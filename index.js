@@ -27,7 +27,7 @@ inquirer
     type:"list",
     name:"addEmployee",
     message:"Add employee to the team",
-    choices:["Engineer", "Intern"]
+    choices:["Engineer", "Intern", "None"]
 },   
 
 ])
@@ -64,14 +64,14 @@ const employeeInfo = (userAnswers)=>{
       type:"list",
       name:"addEmployee",
       message:"Add employee to the team",
-      choices:["Engineer", "Intern"]
+      choices:["Engineer", "Intern", "None"]
       },
      ])
      .then((answers) => {
      console.log(answers)
-     // writeAnswersToFile(answers);
+     employeeInfo(answers);
      })
-    } else {
+    } else if (userAnswers.addEmployee == "Intern") {
         inquirer
         .prompt([
          {
@@ -98,12 +98,15 @@ const employeeInfo = (userAnswers)=>{
          type:"list",
          name:"addEmployee",
          message:"Add employee to the team",
-         choices:["Engineer", "Intern"]
+         choices:["Engineer", "Intern", "None"]
          },
         ])
         .then((answers) => {
         console.log(answers)
+        employeeInfo(answers);
         })
+    } else {
+        return
     }
 }
 
